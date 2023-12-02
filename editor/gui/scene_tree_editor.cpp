@@ -667,6 +667,10 @@ bool SceneTreeEditor::_update_filter(TreeItem *p_parent, bool p_scroll_to_select
 		p_parent->set_visible(keep_for_children || selectable);
 	}
 
+	if (p_parent->is_visible()) {
+		p_parent->set_collapsed_recursive(!keep_for_children && !selectable);
+	}
+
 	if (selectable) {
 		Color custom_color = p_parent->get_meta(SNAME("custom_color"), Color(0, 0, 0, 0));
 		if (custom_color == Color(0, 0, 0, 0)) {
